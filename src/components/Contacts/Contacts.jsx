@@ -40,5 +40,5 @@ export const Contacts = () => {
             <NotificationFilter notification="No contacts found that match the filter" />
             )}
         </>
-    )
+    );
 };
