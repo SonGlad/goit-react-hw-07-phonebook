@@ -1,7 +1,7 @@
 import { FormStyle } from "./Form.styled";
-import { nanoid } from "nanoid";
-import { addContact } from "redux/contactSlice";
 import { useDispatch, useSelector } from "react-redux";
+import { addNewContact } from "redux/contactActions";
+import { selectContacts } from "redux/contactSlice";
 
 
 
@@ -9,7 +9,7 @@ export const Form = () => {
 
 
     const dispatch = useDispatch();
-    const contacts = useSelector(state => state.contacts);
+    const contacts = useSelector(selectContacts);
 
 
     const onFormSubmit = (event) => {
@@ -24,9 +24,13 @@ export const Form = () => {
               alert(`${name} or entered ${number} number is already in contacts.`);
               return;
             }
+        else if (!/^\d+$/.test(number)) {
+            alert('Please enter a valid number.');
+            return;
+        }
 
+        dispatch(addNewContact({name, number}))
         event.target.reset();
-        dispatch(addContact({id: nanoid(), name, number}))
     }; 
 
 

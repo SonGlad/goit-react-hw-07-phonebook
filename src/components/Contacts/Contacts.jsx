@@ -1,16 +1,19 @@
 import { useSelector, useDispatch } from 'react-redux';
-import { deleteContact } from "redux/contactSlice";
 import { ContactsList } from 'components/ContactsList/ContactsList';
+import { deleteContactById } from 'redux/contactActions';
 import { Notification } from "components/Notification/Notification";
 import { NotificationFilter } from "components/NotificationFilter/NotificationFilter";
+import { selectContacts, selectFilter, selectLoading } from 'redux/contactSlice';
 
 
 
 export const Contacts = () => {
 
-    const contacts = useSelector(state => state.contacts);
+
+    const isLoading = useSelector(selectLoading);
+    const contacts = useSelector(selectContacts);
+    const filter = useSelector(selectFilter);
     const dispatch = useDispatch();
-    const filter = useSelector(state => state.filter);
 
 
     const filteredContacts = contacts.filter(contact => {
@@ -22,8 +25,13 @@ export const Contacts = () => {
   
 
     const onDeleteContact = contactId  => {
-        dispatch(deleteContact(contactId));
+        dispatch(deleteContactById(contactId));
     };
+
+
+    if (isLoading) {
+        return <p>Loading data...</p>
+    }
 
     
 
