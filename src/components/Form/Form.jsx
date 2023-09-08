@@ -1,6 +1,6 @@
 import { FormStyle } from "./Form.styled";
 import { useDispatch, useSelector } from "react-redux";
-import { addNewContact } from "redux/contactActions";
+import { addNewContact } from "redux/contactOperations";
 import { selectContacts } from "redux/contactSlice";
 
 

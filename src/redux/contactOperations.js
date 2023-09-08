@@ -10,7 +10,7 @@ export const addNewContact = createAsyncThunk(
             return response
         } 
         catch (error) {
-            thunkApi.rejectWithValue(error.message)
+            return thunkApi.rejectWithValue(error.message)
         }
     } 
 );
@@ -24,7 +24,7 @@ export const getAllContacts = createAsyncThunk(
             return response
         } 
         catch(error) {
-            thunkApi.rejectWithValue(error.message)
+            return thunkApi.rejectWithValue(error.message)
         }  
     }
 );
@@ -38,7 +38,7 @@ export const deleteContactById = createAsyncThunk(
             return response.id
         } 
         catch(error){
-            thunkApi.rejectWithValue(error.message)
+            return thunkApi.rejectWithValue(error.message)
         }  
     }
 );
